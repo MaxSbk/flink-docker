@@ -1,4 +1,4 @@
-version: '2.1'
+version: '3.8'
 services:
   jobmanager:
     image: 'flink:latest'
@@ -9,8 +9,6 @@ services:
     command: jobmanager
     environment:
       - JOB_MANAGER_RPC_ADDRESS=jobmanager
-    networks:
-      - flink-network
   taskmanager:
     image: 'flink:latest'
     expose:
@@ -23,8 +21,3 @@ services:
       - 'jobmanager:jobmanager'
     environment:
       - JOB_MANAGER_RPC_ADDRESS=jobmanager
-    networks:
-      - flink-network
-networks:
-  flink-network:
-    driver: bridge
